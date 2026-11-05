@@ -1,0 +1,25 @@
+/*
+ * EOPAR design tokens (brief §5). Values mirrored in packages/shared/src/brand.ts — keep in sync.
+ * To verify against /design/EOPAR-Website-Design.pdf once supplied (DECISIONS D-005).
+ * Tailwind v4 turns each --color-* into utilities: bg-navy, text-gold, border-gold-soft, …
+ */
+@theme {
+  --color-navy: #0b1426;
+  --color-black: #07080b;
+  --color-black-deep: #050608;
+  --color-gold: #c9a96e;
+  --color-gold-soft: #e6cfa0;
+  --color-gold-light: #f3dfb2;
+  --color-gold-spark: #fff1d2;
+  --color-bronze: #7a5c2e;
+  --color-ivory: #f4ede1;
+  --color-stone: #e9e2d5;
+
+  --font-display: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+
+  /* Fluid type: 390px mobile → 1440px desktop */
+  --text-display: clamp(2.5rem, 1.6rem + 3.8vw, 5rem);
+  --text-eyebrow: 0.75rem;
+  --tracking-eyebrow: 0.3em;
+}

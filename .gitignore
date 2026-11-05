@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Builds
+.next/
+dist/
+build/
+out/
+.turbo/
+storybook-static/
+coverage/
+*.tsbuildinfo
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+infra/**/cdk.out/
+
+# Local data
+/.data/
+uploads/
+media/
+
+# Test output
+playwright-report/
+test-results/
+.lighthouseci/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/*
+!.vscode/extensions.json
+.idea/
+apps/web/next-env.d.ts

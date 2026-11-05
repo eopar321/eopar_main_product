@@ -1,0 +1,19 @@
+packages:
+  - apps/*
+  - packages/*
+  - infra
+
+# Only these packages may run install scripts (native binaries). Everything else is blocked.
+allowBuilds:
+  sharp: true
+  esbuild: true
+  unrs-resolver: true
+  msgpackr-extract: true
+
+# Refuse packages published less than 7 days ago (supply-chain safety; brief §0.6 "at least stable").
+minimumReleaseAge: 10080
+
+# Security patches for transitive dependencies (DECISIONS D-013). Remove once upstream ships them.
+overrides:
+  dompurify: 3.4.17 # GHSA critical/high — via Payload UI > monaco-editor
+  happy-dom: 21.0.4 # GHSA high (SSRF, code exec) — via @lexical/headless and vitest
