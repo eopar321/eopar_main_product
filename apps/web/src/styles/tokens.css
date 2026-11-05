@@ -1,25 +1,141 @@
 /*
- * EOPAR design tokens (brief §5). Values mirrored in packages/shared/src/brand.ts — keep in sync.
- * To verify against /design/EOPAR-Website-Design.pdf once supplied (DECISIONS D-005).
- * Tailwind v4 turns each --color-* into utilities: bg-navy, text-gold, border-gold-soft, …
+ * EOPAR design tokens — measured from design/EOPAR-Website-Design.pdf (v5, Oct 2026).
+ * Colours mirrored in packages/shared/src/brand.ts (a unit test keeps them in sync).
+ * In Tailwind v4 this @theme block IS the Tailwind config: each token becomes a utility
+ * (bg-navy, text-gold, font-display, text-display-xl, shadow-glow-gold, …).
+ * Changes from brief §5 are logged in docs/DECISIONS.md (D-014 onwards).
  */
 @theme {
+  /* ── Colour ─────────────────────────────────────────────── */
   --color-navy: #0b1426;
   --color-black: #07080b;
   --color-black-deep: #050608;
+  --color-panel: #060709; /* panel fill under wheels / Panchang (PDF) */
   --color-gold: #c9a96e;
   --color-gold-soft: #e6cfa0;
   --color-gold-light: #f3dfb2;
   --color-gold-spark: #fff1d2;
-  --color-bronze: #7a5c2e;
+  --color-bronze: #7a5c2e; /* gold's stand-in on ivory: gold on ivory fails contrast */
   --color-ivory: #f4ede1;
   --color-stone: #e9e2d5;
+  --color-error: #f0a699; /* not in the PDF; 9:1 on navy (D-017) */
 
+  /* ── Type (font families live in the @theme inline block below) ── */
+
+  /* Fluid scale, 390px → 1440px (PDF sizes in comments) */
+  --text-display-xl: clamp(3rem, 2.2rem + 3.3vw, 5.25rem); /* 84 hero / page titles */
+  --text-display-xl--line-height: 1.04;
+  --text-display-lg: clamp(2.5rem, 2rem + 1.9vw, 3.75rem); /* 60 section titles */
+  --text-display-lg--line-height: 1.08;
+  --text-display-md: clamp(2rem, 1.7rem + 1.15vw, 2.75rem); /* 44–48 */
+  --text-display-md--line-height: 1.12;
+  --text-display-sm: clamp(1.75rem, 1.6rem + 0.6vw, 2.25rem); /* 36 card titles */
+  --text-display-sm--line-height: 1.15;
+  --text-display-xs: 1.5rem; /* 24 */
+  --text-display-xs--line-height: 1.25;
+  --text-lead: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem); /* 17–19 */
+  --text-lead--line-height: 1.65;
+  --text-body: 1rem; /* 15–17 */
+  --text-body--line-height: 1.6;
+  --text-small: 0.875rem; /* 14 */
+  --text-small--line-height: 1.5;
+  --text-caption: 0.8125rem; /* 13 */
+  --text-caption--line-height: 1.45;
+  --text-eyebrow: 0.75rem; /* 12, tracked uppercase */
+  --text-eyebrow--line-height: 1.4;
+  --tracking-eyebrow: 0.3em;
+  --tracking-button: 0.18em;
+  --tracking-wordmark: 0.12em;
+
+  /* ── Space & layout ─────────────────────────────────────── */
+  --spacing-gutter: clamp(1.25rem, 0.3rem + 3.9vw, 7.5rem); /* 20px mobile → 120px desktop */
+  --spacing-section: clamp(4.5rem, 3rem + 6vw, 8.5rem); /* vertical section padding */
+  --container-content: 75rem; /* 1200px content width */
+  --spacing-header: 5.4375rem; /* 87px */
+
+  /* ── Radii ──────────────────────────────────────────────── */
+  --radius-none: 0; /* cards, inputs, tags are square */
+  --radius-badge: 0.125rem;
+  --radius-pill: 9999px;
+
+  /* ── Shadows & glows ────────────────────────────────────── */
+  --shadow-glow-gold: 0 0 0 1px rgb(230 207 160 / 0.35), 0 12px 32px -8px rgb(201 169 110 / 0.45);
+  --shadow-glow-gold-strong:
+    0 0 0 1px rgb(230 207 160 / 0.45), 0 14px 40px -6px rgb(201 169 110 / 0.6);
+  --shadow-glow-segment: 0 0 10px 1px rgb(230 207 160 / 0.55);
+  --shadow-halo: 0 0 0 8px rgb(230 207 160 / 0.16);
+
+  /* ── Motion (applied only via motion-safe:) ─────────────── */
+  --animate-rotate-slow: eo-rotate 600s linear infinite;
+  --animate-rotate-slower: eo-rotate 900s linear infinite;
+  --animate-rotate-reverse: eo-rotate 720s linear infinite reverse;
+  --animate-counter-slow: eo-rotate 600s linear infinite reverse;
+  --animate-counter-slower: eo-rotate 900s linear infinite reverse;
+  --animate-counter-reverse: eo-rotate 720s linear infinite;
+  --animate-orbit: eo-rotate 24s linear infinite;
+  --animate-breathe: eo-breathe 7s ease-in-out infinite;
+  --animate-shimmer: eo-shimmer 6s ease-in-out infinite;
+  --animate-draw: eo-draw 2.4s cubic-bezier(0.65, 0, 0.35, 1) both;
+  --animate-marquee: eo-marquee 60s linear infinite;
+
+  @keyframes eo-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes eo-breathe {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(0.985);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.015);
+    }
+  }
+  @keyframes eo-shimmer {
+    0%,
+    100% {
+      background-position: 120% 0;
+    }
+    50% {
+      background-position: -20% 0;
+    }
+  }
+  @keyframes eo-draw {
+    from {
+      stroke-dashoffset: var(--eo-dash, 1000);
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes eo-marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+/*
+ * Font families. `inline` makes utilities use these values directly (font-family: var(--font-manrope), …),
+ * so next/font's variables resolve on whichever element carries the font classes — not only on :root.
+ */
+@theme inline {
   --font-display: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  /* Astro glyphs: Manrope has none, so use a self-hosted symbols face (always with U+FE0E) */
+  --font-glyph: var(--font-symbols), 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Symbols', serif;
+}
 
-  /* Fluid type: 390px mobile → 1440px desktop */
-  --text-display: clamp(2.5rem, 1.6rem + 3.8vw, 5rem);
-  --text-eyebrow: 0.75rem;
-  --tracking-eyebrow: 0.3em;
+/* Rule colours used by borders/outlines (alpha values measured in the PDF) */
+:root {
+  --rule-strong: rgb(201 169 110 / 0.4);
+  --rule: rgb(201 169 110 / 0.22);
+  --rule-inner: rgb(201 169 110 / 0.1);
+  --rule-hairline: rgb(244 237 225 / 0.1);
+  /* Inputs: PDF uses 30%; raised to 40% for WCAG 1.4.11 non-text contrast (D-016) */
+  --rule-input: rgb(244 237 225 / 0.4);
+  --rule-on-ivory: rgb(11 20 38 / 0.22);
 }

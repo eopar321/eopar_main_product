@@ -11,6 +11,7 @@ export const COLORS = {
   navy: '#0B1426',
   black: '#07080B',
   blackDeep: '#050608',
+  panel: '#060709',
   gold: '#C9A96E',
   goldSoft: '#E6CFA0',
   goldLight: '#F3DFB2',

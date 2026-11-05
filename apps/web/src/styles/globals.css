@@ -1,26 +1,38 @@
 @import 'tailwindcss';
 @import './tokens.css';
 
+/* Storybook stories live next to components; make sure Tailwind scans them */
+@source '../components';
+
 @layer base {
   html {
     background: var(--color-navy);
     color: var(--color-ivory);
-    font-family: var(--font-sans);
+    font-family: var(--font-manrope), 'Manrope', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Visible gold focus ring everywhere (brief §5 accessibility) */
+  /* Visible gold focus ring everywhere (brief §5, WCAG 2.4.7 / 2.4.11) */
   :focus-visible {
     outline: 2px solid var(--color-gold);
     outline-offset: 3px;
   }
+  .surface-ivory :focus-visible {
+    outline-color: var(--color-bronze);
+  }
 
+  ::selection {
+    background: rgb(201 169 110 / 0.35);
+    color: var(--color-ivory);
+  }
+
+  /* Belt and braces: anything that slipped past motion-safe: stops too */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
+      animation: none !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
@@ -28,16 +40,48 @@
 }
 
 @layer components {
-  .eyebrow {
-    font-size: var(--text-eyebrow);
-    letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
+  /* Light reading sections: navy text, bronze accents */
+  .surface-ivory {
+    background: var(--color-ivory);
+    color: var(--color-navy);
   }
 
-  /* Double-rule gold frame: border + inset outline */
+  /* Double-rule frame: outer border + inset outline (PDF: 22% / 10%, 8px apart) */
   .frame-double {
-    border: 1px solid color-mix(in srgb, var(--color-gold) 70%, transparent);
-    outline: 1px solid color-mix(in srgb, var(--color-gold) 35%, transparent);
-    outline-offset: -8px;
+    border: 1px solid var(--rule);
+    outline: 1px solid var(--rule-inner);
+    outline-offset: -9px;
+  }
+  .frame-double-strong {
+    border: 1px solid var(--rule-strong);
+    outline: 1px solid rgb(201 169 110 / 0.12);
+    outline-offset: -7px;
+  }
+
+  /* Gold shimmer on key italic lines */
+  .text-shimmer {
+    background: linear-gradient(
+        100deg,
+        var(--color-gold-soft) 0%,
+        var(--color-gold-soft) 40%,
+        var(--color-gold-spark) 50%,
+        var(--color-gold-soft) 60%,
+        var(--color-gold-soft) 100%
+      )
+      0 0 / 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .text-shimmer {
+      animation: var(--animate-shimmer);
+    }
+  }
+
+  /* Rotating SVG groups rotate around their own centre */
+  .spin-origin {
+    transform-box: fill-box;
+    transform-origin: center;
   }
 }
