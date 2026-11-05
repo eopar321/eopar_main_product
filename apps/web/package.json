@@ -15,7 +15,10 @@
     "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
     "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
     "test": "cross-env NODE_OPTIONS=--no-deprecation vitest run",
-    "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test"
+    "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test",
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "storybook build -o storybook-static --quiet",
+    "storybook:check": "node scripts/storybook-check.mjs"
   },
   "dependencies": {
     "@eopar/shared": "workspace:*",
