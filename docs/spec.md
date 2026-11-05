@@ -284,7 +284,7 @@ Body text on navy; long-form
 reading pages
 --eo-stone
 Occasional
-#D9D1C3
+#E9E2D5 (owner decision 2026-11-05, DECISIONS D-014; was #D9D1C3)
 Dividers, captions, cards on ivory
 EOPAR — Website Product & Technical Specification
 Page 5 of 51

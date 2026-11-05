@@ -117,7 +117,7 @@ refers to brief §5 — there is no CLAUDE.md in the repo.
 | --------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- |
 | Colours navy, black, gold, gold-soft, gold-light, bronze, ivory | as listed                           | identical hex values                                                            | unchanged                                          |
 | `panel`                                                         | —                                   | `#060709` under the wheel, Kundli and Panchang                                  | **added**                                          |
-| `stone`                                                         | `#E9E2D5`                           | not used anywhere (spec says `#D9D1C3`)                                         | kept brief value; owner to confirm                 |
+| `stone`                                                         | `#E9E2D5`                           | not used anywhere (spec said `#D9D1C3`)                                         | **owner approved `#E9E2D5`**; spec.md updated      |
 | Display type                                                    | "Cormorant Garamond"                | 84 / 60 / 44–48 / 36 / 24 px                                                    | fluid `display-xl…xs` scale from these sizes       |
 | Body type                                                       | "Manrope"                           | lead 17–19, body 15–17, small 14, caption 13 px                                 | `lead/body/small/caption` tokens                   |
 | Eyebrow                                                         | 12–13 px, 0.3em                     | 11–13 px, ~0.3em                                                                | 12 px, 0.3em                                       |
@@ -130,7 +130,7 @@ PDF is the visual source of truth. In Tailwind v4 the `@theme` block in `apps/we
 _is_ the Tailwind config (there is no `tailwind.config.js`).
 Reversible: yes.
 
-### D-015 · Main navigation order — OWNER TO CONFIRM (2026-11-05)
+### D-015 · Main navigation order — approved by owner 2026-11-05
 
 The homepage (PDF p.4) shows _Predictive Arts · Learning · Research · Publications · Markets · About_; every
 inner page (pp.16–26) and the brief show _Predictive Arts · Markets · Learning · Research · Publications · About_.
@@ -153,7 +153,7 @@ Reversible: yes.
 Neither appears in the PDF. Select = native `<select>` styled like the text inputs with a gold chevron.
 File upload = dashed drop zone with a "Choose a file" link; the real file input stays keyboard- and
 screen-reader-operable and also accepts dropped files.
-Reversible: yes. **Owner review requested.**
+Reversible: yes. Owner keeps this design for now and will review it in Storybook (2026-11-05).
 
 ### D-019 · Gold text only on dark; bronze on ivory (2026-11-05)
 
@@ -200,6 +200,8 @@ All logo use goes through `BRAND_ASSETS` (`apps/web/src/components/brand/assets.
 arrives, point the entries at the `.svg` files and move the arc paths into `CelestialO`.
 Reversible: yes.
 
+Owner approved D-015, D-016, D-020, D-021, D-022 (keep astrologically correct), D-025 and the stone value on 2026-11-05.
+
 ## Upgrade paths (documented, not built)
 
 - **Second server:** add a second EC2 host and Cloudflare Load Balancing when traffic or uptime needs it (brief §12A).
@@ -209,5 +211,4 @@ Reversible: yes.
 - Email provider: Postmark (recommended for simplicity/deliverability) or Amazon SES. Needed by Phase 4.
 - GitHub account / repository for CI and the container registry.
 - Approve D-008 (Secrets Manager for the RDS admin password) before Phase 8.
-- Confirm the main navigation order (D-015) and the `stone` colour (D-014).
-- Review the select and file-upload designs, which are not in the PDF (D-018).
+- Review the select and file-upload designs in Storybook → Forms (D-018).
