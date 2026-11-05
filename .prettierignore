@@ -7,3 +7,5 @@ apps/web/src/payload-types.ts
 apps/web/src/migrations
 apps/web/src/app/(payload)/studio/importMap.js
 design
+docs/screenshots
+docs/spec.md
