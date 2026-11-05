@@ -1,0 +1,7 @@
+Storybook check — 2026-11-05T11:17:04.533Z
+65 stories × 3 viewports
+
+Serious/critical problems: 0
+
+Notes (moderate/minor, info): 1
+  · Zodiac wheel runs 26 CSS animations with motion allowed, 0 under reduced motion

@@ -33,14 +33,14 @@
 
 ### Checks
 
-| Check                                                       | Result                                                            |
-| ----------------------------------------------------------- | ----------------------------------------------------------------- |
-| axe (WCAG 2.0/2.1/2.2 A+AA) on every story                  | see `docs/screenshots/phase-1/REPORT.txt`                         |
-| Every zodiac/planet glyph carries U+FE0E                    | checked on every story in the DOM + unit test on the data         |
-| Nothing animates under `prefers-reduced-motion`             | checked on every story (`document.getAnimations()`)               |
-| Screenshots at 1440, 1366×768, 390                          | `docs/screenshots/phase-1/`                                       |
-| Lint, type-check, unit tests, `next build`, Storybook build | pass locally                                                      |
-| CI on GitHub                                                | not run — no GitHub repository yet (owner chose to skip the push) |
+| Check                                                       | Result                                                                       |
+| ----------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| axe (WCAG 2.0/2.1/2.2 A+AA) on every story                  | 0 serious/critical on all 65 stories (`docs/screenshots/phase-1/REPORT.txt`) |
+| Every zodiac/planet glyph carries U+FE0E                    | checked on every story in the DOM + unit test on the data                    |
+| Nothing animates under `prefers-reduced-motion`             | checked on every story (`document.getAnimations()`)                          |
+| Screenshots at 1440, 1366×768, 390                          | `docs/screenshots/phase-1/`                                                  |
+| Lint, type-check, unit tests, `next build`, Storybook build | pass locally                                                                 |
+| CI on GitHub                                                | not run — no GitHub repository yet (owner chose to skip the push)            |
 
 ### Not yet matching the PDF
 
