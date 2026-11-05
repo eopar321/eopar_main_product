@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@eopar/shared": "workspace:*",
-    "bullmq": "6.5.0",
+    "bullmq": "6.5.1",
     "ioredis": "6.0.0",
     "pino": "10.4.0",
     "zod": "4.6.7"
